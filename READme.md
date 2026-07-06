@@ -10,7 +10,7 @@
 ![WordPress](https://img.shields.io/badge/WordPress-CMS-21759B?style=for-the-badge&logo=wordpress)
 ![Apache](https://img.shields.io/badge/Apache-Web%20Server-D22128?style=for-the-badge&logo=apache)
 ![PHP](https://img.shields.io/badge/PHP-8.5-777BB4?style=for-the-badge&logo=php)
-![Linux](https://img.shields.io/badge/Amazon-Linux-2023-FCC624?style=for-the-badge&logo=linux)
+![Linux](https://img.shields.io/badge/Linux-Amazon%20Linux-yellow?style=for-the-badge&logo=linux)
 
 </div>
 
@@ -18,9 +18,9 @@
 
 # 📖 Project Overview
 
-This project demonstrates the deployment of a **WordPress website** on **Amazon Web Services (AWS)** using **Amazon EC2** as the web server and **Amazon RDS (MySQL)** as the backend database.
+This project demonstrates how to deploy a **WordPress website** on **Amazon Web Services (AWS)** using **Amazon EC2** as the web server and **Amazon RDS (MySQL)** as the managed database.
 
-The application is hosted on an **Amazon Linux 2023 EC2 instance** running **Apache** and **PHP**, while the WordPress database is securely stored in **Amazon RDS**. This architecture separates the web and database layers, improving scalability, reliability, and security.
+The web server runs on **Amazon Linux 2023** with **Apache HTTP Server** and **PHP**, while **Amazon RDS** provides a secure and scalable MySQL database backend. This architecture follows AWS best practices by separating the application and database layers.
 
 ---
 
@@ -28,22 +28,22 @@ The application is hosted on an **Amazon Linux 2023 EC2 instance** running **Apa
 
 ```text
                      Internet
-                         │
-                   Public IP Address
-                         │
-               +----------------------+
-               |      Amazon EC2      |
-               | Apache + PHP         |
-               | WordPress Website    |
-               +----------+-----------+
                           │
+                    Public IP Address
+                          │
+                 +----------------------+
+                 |      Amazon EC2      |
+                 | Apache + PHP         |
+                 | WordPress Website    |
+                 +----------+-----------+
+                            │
                      MySQL Port 3306
-                          │
-               +----------▼-----------+
-               |     Amazon RDS       |
-               |        MySQL         |
-               | WordPress Database   |
-               +----------------------+
+                            │
+                 +----------▼-----------+
+                 |     Amazon RDS       |
+                 |        MySQL         |
+                 | WordPress Database   |
+                 +----------------------+
 ```
 
 ---
@@ -57,7 +57,7 @@ The application is hosted on an **Amazon Linux 2023 EC2 instance** running **Apa
 - Internet Gateway
 - Amazon Linux 2023
 - Apache HTTP Server
-- PHP 8.5
+- PHP
 - MariaDB Client
 - WordPress
 
@@ -67,18 +67,18 @@ The application is hosted on an **Amazon Linux 2023 EC2 instance** running **Apa
 
 - WordPress hosted on Amazon EC2
 - Amazon RDS MySQL Database
-- Apache HTTP Server
-- PHP 8.5 Runtime
-- Secure EC2–RDS Connectivity
-- Web and Database Tier Separation
+- Secure EC2 to RDS Connectivity
+- Apache Web Server
+- PHP Runtime
 - WordPress Installation Wizard
-- WordPress Administration Dashboard
+- Live WordPress Website
+- Production-ready Cloud Infrastructure
 
 ---
 
 # 🛠️ Implementation Steps
 
-## Step 1 – Launch an EC2 Instance
+## Step 1 – Launch Amazon EC2
 
 - Amazon Linux 2023
 - Configure Security Group
@@ -99,7 +99,7 @@ sudo dnf install php php-mysqlnd php-fpm php-json php-gd php-mbstring php-xml -y
 
 ---
 
-## Step 3 – Download WordPress
+## Step 3 – Download and Configure WordPress
 
 ```bash
 wget https://wordpress.org/latest.tar.gz
@@ -114,9 +114,9 @@ sudo cp -r wordpress/* /var/www/html/
 ## Step 4 – Create Amazon RDS
 
 - Engine: MySQL
-- Create Database Instance
-- Configure Security Group
-- Allow MySQL Port (3306)
+- Configure Database
+- Allow Port 3306
+- Create WordPress Database
 
 ---
 
@@ -148,32 +148,7 @@ SHOW DATABASES;
 
 ## Step 8 – Configure WordPress
 
-```bash
-cp wp-config-sample.php wp-config.php
-
-vi wp-config.php
-```
-
-Update:
-
-```php
-DB_NAME='wordpress'
-DB_USER='admin'
-DB_PASSWORD='YourPassword'
-DB_HOST='RDS-Endpoint'
-```
-
----
-
-## Step 9 – Complete WordPress Installation
-
-Open your browser:
-
-```
-http://<EC2-Public-IP>
-```
-
-Complete the installation wizard and log in to the WordPress dashboard.
+Update the **wp-config.php** file with your RDS database details and complete the WordPress installation.
 
 ---
 
@@ -181,7 +156,7 @@ Complete the installation wizard and log in to the WordPress dashboard.
 
 ## 🔗 EC2 Connected to Amazon RDS
 
-Successfully connected the Amazon EC2 instance to the Amazon RDS MySQL database using the MariaDB client.
+The Amazon EC2 instance successfully connects to the Amazon RDS MySQL database using the MariaDB client.
 
 <img src="ec2-rds-database-connection.png" width="100%">
 
@@ -189,7 +164,7 @@ Successfully connected the Amazon EC2 instance to the Amazon RDS MySQL database 
 
 ## 🗄️ WordPress Database Created
 
-Created the **wordpress** database inside Amazon RDS and verified it using the `SHOW DATABASES;` command.
+A dedicated **WordPress** database is created inside Amazon RDS and verified using the SQL `SHOW DATABASES;` command.
 
 <img src="wordpress-database-created.png" width="100%">
 
@@ -197,7 +172,7 @@ Created the **wordpress** database inside Amazon RDS and verified it using the `
 
 ## 🎉 WordPress Installation Completed
 
-Successfully completed the WordPress installation wizard and configured the administrator account.
+The WordPress installation wizard has completed successfully, confirming that the application is correctly configured and ready to use.
 
 <img src="wordpress-installation-success.png" width="100%">
 
@@ -205,7 +180,7 @@ Successfully completed the WordPress installation wizard and configured the admi
 
 ## 🌐 Live WordPress Website
 
-Final deployed WordPress website running successfully on Amazon EC2 with Amazon RDS as the backend database.
+Final output of the deployed WordPress website running successfully on Amazon EC2 with Amazon RDS as its backend database.
 
 <img src="wordpress-homepage.png" width="100%">
 
@@ -227,13 +202,13 @@ wordpress-infrastructure-on-aws/
 
 # 🎯 Skills Demonstrated
 
-- Amazon EC2
-- Amazon RDS
+- AWS EC2
+- Amazon RDS (MySQL)
 - WordPress Deployment
 - Apache HTTP Server
 - PHP
-- MariaDB Client
 - Linux Administration
+- MariaDB Client
 - VPC
 - Security Groups
 - Cloud Infrastructure
@@ -242,31 +217,31 @@ wordpress-infrastructure-on-aws/
 
 # 📚 Learning Outcomes
 
-- Deployed WordPress on Amazon EC2.
+- Successfully deployed WordPress on Amazon EC2.
 - Installed and configured Apache and PHP.
-- Created an Amazon RDS MySQL database.
-- Connected EC2 to RDS using the MariaDB client.
-- Configured WordPress with an external database.
+- Connected Amazon EC2 to Amazon RDS.
+- Created and configured a MySQL database on Amazon RDS.
 - Completed the WordPress installation process.
-- Successfully hosted a live WordPress website on AWS.
+- Hosted a live WordPress website using AWS services.
+- Gained hands-on experience with cloud infrastructure and Linux administration.
 
 ---
 
 # 👨‍💻 Author
 
-**Dineshkumar R**
+**Kishore G**
 
 **Aspiring AWS Cloud & DevOps Engineer**
 
-- GitHub: https://github.com/dineshkumarrp22-ops
-- LinkedIn: www.linkedin.com/in/dinesh-kumar-engr
+- **GitHub:** https://github.com/KISHORE-2605
+- **LinkedIn:** https://www.linkedin.com/in/kishore-g005
 
 ---
 
 <div align="center">
 
-### ⭐ If you found this project helpful, consider giving it a Star!
+### ⭐ If you found this project helpful, please give it a Star!
 
-🚀 Thank you for visiting my repository.
+🚀 **Thank you for visiting my repository!**
 
 </div>
